@@ -575,7 +575,7 @@
         </div>
         
         <div style="margin-top: 30px; color: var(--text-muted); max-width: 600px;">
-            <p>I am a passionate engineer specialized in <b>AI & Data Center Technologies</b>. Currently, I lead validation teams for the NVIDIA GB200 platform at SMS Infocomm. I bridge the gap between hardware diagnostics and software automation to ensure the world's most powerful AI servers run reliably.</p>
+            <p>I am a passionate engineer specialized in <b>AI & Data Center Technologies</b>. Currently, I lead validation teams for the NVIDIA GB200 platform at SMS Infocomm. I bridge the gap between hardware diagnostics and software automation to ensure that the world's most powerful AI servers run reliably.</p>
         </div>
     </section>
 
@@ -790,7 +790,7 @@
             }, 300); // Match CSS transition time
         });
 
-        // Close when clicking outside the window content
+        // Close when clicking outside window content
         window.addEventListener('click', (e) => {
             if (e.target == resumeModal) {
                 resumeModal.classList.remove('show');
@@ -837,7 +837,8 @@
 
         let particlesArray;
 
-        let mouse = { x: null, y: null, radius: (canvas.height/80) * (canvas.width/80) };
+        // Changed divisor from 80 to 150 to make field SMALLER
+        let mouse = { x: null, y: null, radius: (canvas.height/150) * (canvas.width/150) };
 
         window.addEventListener('mousemove', (event) => {
             mouse.x = event.x;
@@ -868,10 +869,11 @@
                 let distance = Math.sqrt(dx*dx + dy*dy);
 
                 if (distance < mouse.radius + this.size) {
-                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) this.x += 10;
-                    if (mouse.x > this.x && this.x > this.size * 10) this.x -= 10;
-                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) this.y += 10;
-                    if (mouse.y > this.y && this.y > this.size * 10) this.y -= 10;
+                    // UPDATED: Changed from 2 to 6 to make push stronger
+                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) this.x += 6;
+                    if (mouse.x > this.x && this.x > this.size * 10) this.x -= 6;
+                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) this.y += 6;
+                    if (mouse.y > this.y && this.y > this.size * 10) this.y -= 6;
                 }
                 
                 this.x += this.directionX;
@@ -927,7 +929,8 @@
         window.addEventListener('resize', () => {
             canvas.width = innerWidth;
             canvas.height = innerHeight;
-            mouse.radius = ((canvas.height/80) * (canvas.height/80));
+            // Recalculate mouse radius on resize
+            mouse.radius = ((canvas.height/150) * (canvas.height/150));
             init();
         });
 
